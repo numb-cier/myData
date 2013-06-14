@@ -1,0 +1,27 @@
+今天在vista上调试一个程序，引用了另一个工程生成的dll，结果在Debug 时出现这样的错误信息，
+“binary was not built with debug information.”，一时搞不懂是啥问题，而再xp上没有出错。
+ 
+
+
+Google了一下发现一个帖子专门讲述这个问题的，转帖在这里了。
+ 
+来自：
+ 
+http://forums.microsoft.com/MSDN/ShowPost.aspx?PostID=927510&SiteID=1
+ 
+ 
+ Its not an installation issue, the problem is, as the error message suggests, 
+ that you have not built your project with debug information.
+
+To do this:
+1) Goto Project->Properties
+2) Make sure "Configuration" at the top is "Debug"
+3) On the left, select "C/C++", then "General"
+4) On the right, change "Debug information format" to "Program Database for edit and continue (/ZI)"
+5) On the left, Select "Optimization"
+6) On the right, Change "Optimization" to "Disabled (/Od)"
+7) On the left, select "Code Generation"
+8) On the right, change "Runtime library" to "Multi-Threaded Debug (/MTd)"
+9) On the left, expand "Linker" and select "Debugging"
+10) On the right, change "Generate Debug info" to "Yes (/DEBUG)"
+11) Rebuild your project.  
